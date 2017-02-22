@@ -1,23 +1,28 @@
 <template name="message">
-	<li id="{{_id}}" class="message background-transparent-dark-hover sequential {{system}} {{t}} {{own}} {{isTemp}} {{error}}" data-username="{{u.username}}" data-date="{{date}}">
-		<div class="content">
-			<span class="thumb thumb-small" data-username="{{u.username}}" tabindex="1">{{> avatar username=u.username}}</span>
-			<span class="user" data-username="{{u.username}}" tabindex="1">
-				{{#if own}}
-					{{_ "You"}}
-				{{else}}
-					{{sender}}
-				{{/if}}
-			</span>
-			<div class="body" dir="auto">
-				{{{body}}}
-				<span class="info">
-					<span class="time">{{time}}</span>
-					{{#if edit}}
-						<span class="edited">({{_ "edited"}})</span>
-					{{/if}}
-				</span>
-			</div>
-		</div>
-	</li>
+  <div id="{{_id}}" data-username="{{u.username}}" data-date="{{date}}" class="intercom-conversation-part intercom-conversation-part-{{#if own}}user{{else}}admin{{/if}}  {{system}} {{t}} {{own}} {{isTemp}} {{error}}">
+    <div class="intercom-comment-container intercom-comment-container-{{#if own}}user{{else}}admin{{/if}}">
+      {{#if own}} {{else}}
+      <div class="intercom-comment-container-admin-avatar">
+        <div class="intercom-avatar" data-username="{{u.username}}" tabindex="1">{{> avatar username=u.username}}</div>
+      </div>
+      {{/if}}
+
+      <div class="intercom-comment">
+        <div class="intercom-blocks">
+          <div class="intercom-block intercom-block-paragraph">
+          	<div class="intercom-block intercom-block-paragraph" dir="auto">{{{body}}}</div>
+	          <!-- <div class="intercom-block intercom-block-paragraph">Hello <span title="wave">👋</span>&nbsp;</div> -->
+	          <!-- <div class="intercom-block intercom-block-paragraph">How can I help? <span title="smiley">😃</span>&nbsp;</div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <span>
+      <div class="intercom-conversation-part-metadata">{{time}}</div>
+    </span>
+    {{#if edit}}
+			<span class="edited">({{_ "edited"}})</span>
+		{{/if}}
+  </div>
+
 </template>

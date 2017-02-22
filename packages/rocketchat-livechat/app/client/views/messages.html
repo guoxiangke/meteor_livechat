@@ -1,77 +1,146 @@
 <template name="messages">
-	{{#with agentData}}
-	<div class="header">
-		<div class="picture">
-			<img src="{{avatar}}">
-		</div>
-		<div class="info">
-			<ul>
-				<li><h2>{{name}}</h2></li>
-				{{#if email}}
-					<li>{{email}}</li>
-				{{/if}}
-				{{#if phone}}
-					<li>{{phone}}</li>
-				{{/if}}
-			</ul>
-		</div>
-	</div>
-	{{/with}}
-	<div class="messages">
-		<div class="wrapper">
-			<ul>
-				{{#each messages}}
-					{{#nrr nrrargs 'message' .}}{{/nrr}}
-				{{/each}}
-			</ul>
-		</div>
-		<div class="new-message background-primary-action-color color-primary-action-contrast not">
-			<span>{{_ "New_messages"}}</span>
-		</div>
+		{{#with agentData}}
 
-		<div class="error error-color error-background">
+		{{/with}}
+
+
+		<div class="intercom-conversation-body-container">
+	    <div class="intercom-conversation-backgrounds">
+	      <div class="intercom-conversation-background intercom-conversation-background-1"></div>
+	    </div>
+
+      <div class="intercom-conversation-body intercom-conversation-body-snapped" style="transform: translateY(0px); bottom: -173px;">
+        <div class="intercom-conversation-body-profile">
+          <div class="intercom-conversation-profile intercom-conversation-profile-expanded">
+            <div class="intercom-team-profile" style="display:none">
+              <div class="intercom-team-profile-full" style="opacity: 1;">
+                <div class="intercom-team-profile-full-team-name">Intercom</div>
+                <div class="intercom-team-profile-full-response-delay">Typically replies in under 20m</div>
+                <div class="intercom-team-profile-full-avatar-container">
+                  <div class="intercom-team-profile-full-avatar intercom-index-0">
+                    <div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/383251/square_128/Photo_on_4-12-16_at_16.11-1460537250-1462491715.jpg?1462491715"></div>
+                    <div class="intercom-team-profile-full-admin-name">Dorian</div>
+                  </div>
+                  <div class="intercom-team-profile-full-avatar intercom-index-1">
+                    <div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/547835/square_128/FullSizeRender-1472098840.jpg?1472098840"></div>
+                    <div class="intercom-team-profile-full-admin-name">Jack</div>
+                  </div>
+                  <div class="intercom-team-profile-full-avatar intercom-index-2">
+                    <div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/656461/square_128/IMG_1744-1472721461.jpg?1472721461"></div>
+                    <div class="intercom-team-profile-full-admin-name">Jade</div>
+                  </div>
+                </div>
+                <div class="intercom-team-profile-full-intro"><span>We make it simple and seamless for businesses and people to talk to each other. Ask us anything <span title="grinning">😀</span></span></div>
+              </div>
+            </div>
+            <div class="intercom-admin-profile">
+              <div class="intercom-admin-profile-full">
+                <div class="intercom-admin-profile-full-background" style="background-image: url(&quot;https://static.intercomassets.com/avatars/831182/square_128/Kate_Pic-1479735964.jpg?1479735964&quot;);"></div>
+                <div class="intercom-admin-profile-full-avatar">
+                  <div class="intercom-avatar">{{> avatar username=u.username}}</div>
+                </div>
+                <div class="intercom-admin-profile-full-body">
+                  <div class="intercom-admin-profile-full-admin-name">{{u.username}}</div>
+                  <div class="intercom-admin-profile-full-last-active">Active 10h ago</div>
+                </div>
+                <div class="intercom-admin-profile-full-title-and-location">
+                  <div class="intercom-admin-profile-full-title"><span>Account Development Representative</span></div>
+                  <div class="intercom-admin-profile-full-local-time">8:11 am in Dublin, Ireland</div>
+                </div>
+              </div>
+
+              <div class="intercom-admin-profile-compact" style="opacity: 0;">
+                <div class="intercom-admin-profile-compact-contents">
+                  <div class="intercom-admin-profile-compact-avatar">
+                    <div class="intercom-avatar">{{> avatar username=u.username}}</div>
+                  </div>
+                  <div class="intercom-admin-profile-compact-body">
+                    <div class="intercom-admin-profile-compact-admin-name">{{u.username}}</div>
+                    <div class="intercom-admin-profile-compact-last-active">Active 10h ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="intercom-conversation-body-parts" style="top: 248px; bottom: 228px;">
+          <div class="intercom-conversation-body-parts-wrapper">
+            <div class="intercom-conversation-parts" id="chat" style="transform: translateY(0px);">
+
+                <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
+                  <div class="intercom-notification-channels-card">
+                    <div class="intercom-notification-channels-card-admin-avatar">
+                      <div class="intercom-avatar">{{> avatar username=u.username}}</div>
+                    </div>
+                    <div class="intercom-notification-channels intercom-notification-channels-last-part">
+                      <div class="intercom-notification-channels-options">
+                        <div class="intercom-notification-channels-title-container">
+                          <div class="intercom-notification-channels-title">获取回复方式</div>
+                          <div class="intercom-notification-channels-title-success"></div>
+                        </div>
+                        <div class="intercom-notification-channels-option-container">
+                          <a class="intercom-notification-channels-option intercom-notification-channels-option-qq" >QQ</a>
+                          <a class="intercom-notification-channels-option intercom-notification-channels-option-wechat" >微信</a>
+                          <a class="intercom-notification-channels-option intercom-notification-channels-option-selected intercom-notification-channels-option-sms" >短信</a>
+                        </div>
+                        <div class="intercom-notification-channels-input-collector">
+                          <form action="" id="userForm">
+                            <div class="intercom-notification-channels-input-container">
+                              <div class="intercom-notification-channels-input intercom-notification-channels-phone-input">
+                                <div class="intercom-flag cn"></div>
+                                <label class="intercom-notification-channels-placeholder">
+                                  <!-- react-text: 119 -->137 1234 5678<!-- /react-text -->
+                                </label>
+                                <input type="text" id="username" name="intercom-channel-collector" value="" autocomplete="off">
+                              </div>
+                              <div class="intercom-notification-channels-input-submit-container">
+                                <div class="intercom-notification-channels-input-submit-button">
+                                  <div class="intercom-notification-channels-input-submit-icon"></div>
+                                  <div class="intercom-notification-channels-input-valid-icon"></div>
+                                </div>
+                              </div>
+                            </div>
+                            <span></span>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <span></span>
+                </div>
+
+
+								{{#each messages}}
+						      {{#nrr nrrargs 'message' .}}{{/nrr}}
+						    {{/each}}
+
+
+            </div>
+          </div>
+        </div>
+
+      </div>
 			<span></span>
-		</div>
-	</div>
-	<div class="footer">
-		{{#if showConnecting}}
-			{{> loading}}
-		{{else}}
-			<div class="message-bar">
-				<div class="input-wrapper">
-					<textarea class="input-message" placeholder="{{_ "Type_your_message"}}"></textarea>
-				</div>
-				<div class="buttons">
-					<svg class="send-button" aria-label="{{_ "Send"}}" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg"><path d="M1764 11q33 24 27 64l-256 1536q-5 29-32 45-14 8-31 8-11 0-24-5l-453-185-242 295q-18 23-49 23-13 0-22-4-19-7-30.5-23.5t-11.5-36.5v-349l864-1059-1069 925-395-162q-37-14-40-55-2-40 32-59l1664-960q15-9 32-9 20 0 36 11z"/></svg>
-					{{#if videoCallEnabled}}
-						<svg class="video-button" aria-label="{{_ "Video"}}"  viewBox="0 0 459 459" xmlns="http://www.w3.org/2000/svg"><path d="M357,191.25V102c0-15.3-10.2-25.5-25.5-25.5h-306C10.2,76.5,0,86.7,0,102v255c0,15.3,10.2,25.5,25.5,25.5h306 c15.3,0,25.5-10.2,25.5-25.5v-89.25l102,102V89.25L357,191.25z"/></svg>
-					{{/if}}
-				</div>
-			</div>
-		{{/if}}
 
-		{{#if usersTyping.users}}
-			{{#with usersTyping}}
-				<div class="typing">
-					<strong>{{users}}</strong>
-					{{#if multi}}
-						{{#if selfTyping}}
-							{{_ "are_also_typing"}}
-						{{else}}
-							{{_ "are_typing"}}
-						{{/if}}
-					{{else}}
-						{{#if selfTyping}}
-							{{_ "is_also_typing" context="male"}}
-						{{else}}
-							{{_ "is_typing" context="male"}}
-						{{/if}}
-					{{/if}}
-				</div>
-			{{/with}}
-		{{else}}
-			{{> options show=showOptions}}
-			<button class="toggle-options secondary-font-color">{{optionsLink}}</button>
-		{{/if}}
-	</div>
+				<div class="new-message background-primary-action-color color-primary-action-contrast not">
+		      <span>{{_ "New_messages"}}</span>
+		    </div>
+
+		    <div class="error error-color error-background">
+		      <span></span>
+		    </div>
+		</div>
+
+    <div class="intercom-conversation-footer">
+      <div class="intercom-composer">
+        <pre><!-- /react-text --><br></pre>
+        <textarea class="input-message" id="message" placeholder="{{_ "Type_your_message"}}"></textarea>
+        <span></span>
+        <span></span>
+        <button class="intercom-composer-emoji-button"></button>
+        <div class="intercom-composer-send-button send-button"><input type="file" style="display: none;"></div>
+      </div>
+  	</div>
+
 </template>
