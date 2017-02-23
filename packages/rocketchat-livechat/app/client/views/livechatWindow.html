@@ -6,10 +6,10 @@
 					<div class="intercom-messenger-background"></div>
 					<div class="intercom-conversation">
 						<div class="intercom-header-buttons">
-              <div class="intercom-header-buttons-back">
+             <!--  <div class="intercom-header-buttons-back">
                 <div class="intercom-header-buttons-back-contents"></div>
-              </div>
-              <div class="intercom-header-buttons-close">
+              </div> -->
+              <div class="intercom-header-buttons-close title">
                 <div class="intercom-header-buttons-close-contents"></div>
               </div>
             </div>
@@ -17,11 +17,7 @@
 
 
 						{{#if livechatOnline}}
-							{{#if showRegisterForm}}
-								{{> register}}
-							{{else}}
 								{{> messages}}
-							{{/if}}
 						{{else}}
 							<div class="offline">
 								{{> offlineForm (offlineData)}}

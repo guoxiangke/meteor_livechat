@@ -67,48 +67,9 @@
         <div class="intercom-conversation-body-parts" style="top: 248px; bottom: 228px;">
           <div class="intercom-conversation-body-parts-wrapper">
             <div class="intercom-conversation-parts" id="chat" style="transform: translateY(0px);">
-
-                <div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
-                  <div class="intercom-notification-channels-card">
-                    <div class="intercom-notification-channels-card-admin-avatar">
-                      <div class="intercom-avatar">{{> avatar username=u.username}}</div>
-                    </div>
-                    <div class="intercom-notification-channels intercom-notification-channels-last-part">
-                      <div class="intercom-notification-channels-options">
-                        <div class="intercom-notification-channels-title-container">
-                          <div class="intercom-notification-channels-title">获取回复方式</div>
-                          <div class="intercom-notification-channels-title-success"></div>
-                        </div>
-                        <div class="intercom-notification-channels-option-container">
-                          <a class="intercom-notification-channels-option intercom-notification-channels-option-qq" >QQ</a>
-                          <a class="intercom-notification-channels-option intercom-notification-channels-option-wechat" >微信</a>
-                          <a class="intercom-notification-channels-option intercom-notification-channels-option-selected intercom-notification-channels-option-sms" >短信</a>
-                        </div>
-                        <div class="intercom-notification-channels-input-collector">
-                          <form action="" id="userForm">
-                            <div class="intercom-notification-channels-input-container">
-                              <div class="intercom-notification-channels-input intercom-notification-channels-phone-input">
-                                <div class="intercom-flag cn"></div>
-                                <label class="intercom-notification-channels-placeholder">
-                                  <!-- react-text: 119 -->137 1234 5678<!-- /react-text -->
-                                </label>
-                                <input type="text" id="username" name="intercom-channel-collector" value="" autocomplete="off">
-                              </div>
-                              <div class="intercom-notification-channels-input-submit-container">
-                                <div class="intercom-notification-channels-input-submit-button">
-                                  <div class="intercom-notification-channels-input-submit-icon"></div>
-                                  <div class="intercom-notification-channels-input-valid-icon"></div>
-                                </div>
-                              </div>
-                            </div>
-                            <span></span>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <span></span>
-                </div>
+              {{#if showRegisterForm}}
+                {{> newregister}}
+              {{/if}}
 
 
 								{{#each messages}}
@@ -123,13 +84,13 @@
       </div>
 			<span></span>
 
-				<div class="new-message background-primary-action-color color-primary-action-contrast not">
-		      <span>{{_ "New_messages"}}</span>
-		    </div>
+			{/*<div class="new-message background-primary-action-color color-primary-action-contrast not">
+	      <span>{{_ "New_messages"}}</span>
+	    </div>*/}
 
-		    <div class="error error-color error-background">
-		      <span></span>
-		    </div>
+	    <div class="error error-color error-background">
+	      <span></span>
+	    </div>
 		</div>
 
     <div class="intercom-conversation-footer">

@@ -1,6 +1,12 @@
 /* globals Livechat, LivechatVideoCall, MsgTyping */
 
 Template.messages.helpers({
+	showRegisterForm() {
+		if (Session.get('triggered') || Meteor.userId()) {
+			return false;
+		}
+		return Livechat.registrationForm;
+	},
 	messages() {
 		return ChatMessage.find({
 			rid: visitor.getRoom(),
