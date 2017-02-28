@@ -1,13 +1,12 @@
 (function(w) {
-  w.RocketChat = w.LiveChat || { _: [] };
+  w.RocketChat = w.liveChat || { _: [] };
   var config = {};
   var widget;
   var iframe;
   var hookQueue = [];
   var ready = false;
 
-  var widgetWidth = '60px';
-  var widgetWidthOpened = '370px';
+  var widgetWidth = '370px';
   var widgetHeightOpened = '590px';
   var widgetHeightClosed = '60px';
 
@@ -33,7 +32,6 @@
   var openWidget = function() {
     widget.dataset.state = 'opened';
     widget.style.height = widgetHeightOpened;
-    widget.style.width = widgetWidthOpened;
     callHook('widgetOpened');
     document.querySelector('.rocketchat-widget iframe').focus();
   };

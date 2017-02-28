@@ -31,14 +31,6 @@ Template.livechatWindow.helpers({
 	offlineMessage() {
 		return Livechat.offlineMessage;
 	},
-	offlineData() {
-		return {
-			offlineMessage: Livechat.offlineMessage.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2'),
-			offlineSuccessMessage: Livechat.offlineSuccessMessage,
-			offlineUnavailableMessage: Livechat.offlineUnavailableMessage.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2'),
-			displayOfflineForm: Livechat.displayOfflineForm
-		};
-	},
 	videoCalling() {
 		return LivechatVideoCall.isActive();
 	},
