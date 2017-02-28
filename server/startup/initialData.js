@@ -1,4 +1,17 @@
 Meteor.startup(function() {
+	//51chat.net init begin
+	smtp = {
+		username: 'bluesky_still',
+		password: 'N-Hd_5T4JJib5pUnCVL7mA',
+		server:   'smtp.mandrillapp.com',
+		port: 587
+	};
+	// https://rocket.chat/docs/administrator-guides/create-the-first-admin
+	process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
+	process.env.ADMIN_USERNAME='admin';
+	process.env.ADMIN_PASS='Profero@2';
+	process.env.ADMIN_EMAIL='admin@51chat.net';
+	//51chat.net init end
 	Meteor.defer(function() {
 		if (!RocketChat.models.Rooms.findOneById('GENERAL')) {
 			RocketChat.models.Rooms.createWithIdTypeAndName('GENERAL', 'c', 'general', {
@@ -6,7 +19,7 @@ Meteor.startup(function() {
 			});
 		}
 
-		if (!RocketChat.models.Users.db.findOneById('rocket.cat')) {
+		if (0&&!RocketChat.models.Users.db.findOneById('rocket.cat')) {
 			RocketChat.models.Users.create({
 				_id: 'rocket.cat',
 				name: 'Rocket.Cat',

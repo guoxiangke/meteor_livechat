@@ -91,7 +91,7 @@ RocketChat.settings.addGroup 'OAuth', ->
 RocketChat.settings.addGroup 'General', ->
 
 	@add 'Site_Url', __meteor_runtime_config__?.ROOT_URL, { type: 'string', i18nDescription: 'Site_Url_Description', public: true }
-	@add 'Site_Name', 'Rocket.Chat', { type: 'string', public: true }
+	@add 'Site_Name', '无忧洽客|51Chat.net', { type: 'string', public: true }
 	@add 'Language', '', { type: 'language', public: true }
 	@add 'Allow_Invalid_SelfSigned_Certs', false, { type: 'boolean' }
 	@add 'Favorite_Rooms', true, { type: 'boolean', public: true }

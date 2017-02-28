@@ -7,7 +7,7 @@ Template.livechatInstallation.helpers({
 (function(w, d, s, u) {
 	w.liveChat = function(c) { w.liveChat._.push(c) }; w.liveChat._ = []; w.liveChat.url = u;
 	var h = d.getElementsByTagName(s)[0], j = d.createElement(s);
-	j.async = true; j.src = '${siteUrl}/packages/rocketchat_livechat/assets/rocket-livechat.js';
+	j.async = true; j.src = '${siteUrl}/packages/rocketchat_livechat/assets/51chat.js';
 	h.parentNode.insertBefore(j, h);
 })(window, document, 'script', '${siteUrl}/livechat');
 </script>
