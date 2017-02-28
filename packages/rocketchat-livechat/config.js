@@ -1,9 +1,9 @@
 Meteor.startup(function() {
 	RocketChat.settings.addGroup('Livechat');
 
-	RocketChat.settings.add('Livechat_enabled', false, { type: 'boolean', group: 'Livechat', public: true });
+	RocketChat.settings.add('Livechat_enabled', true, { type: 'boolean', group: 'Livechat', public: true });
 
-	RocketChat.settings.add('Livechat_title', 'Rocket.Chat', { type: 'string', group: 'Livechat', public: true });
+	RocketChat.settings.add('Livechat_title', '51Chat', { type: 'string', group: 'Livechat', public: true });
 	RocketChat.settings.add('Livechat_title_color', '#C1272D', { type: 'color', group: 'Livechat', public: true });
 
 	RocketChat.settings.add('Livechat_display_offline_form', true, {
@@ -44,7 +44,7 @@ Meteor.startup(function() {
 		section: 'Offline',
 		i18nLabel: 'Color'
 	});
-	RocketChat.settings.add('Livechat_offline_message', 'We are not online right now. Please leave us a message:', {
+	RocketChat.settings.add('Livechat_offline_message', 'We make it simple and seamless for businesses and people to talk to each other. Ask us anything', {
 		type: 'string',
 		group: 'Livechat',
 		public: true,
