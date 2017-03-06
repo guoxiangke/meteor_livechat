@@ -12,6 +12,14 @@ Template.userEdit.helpers
 	role: ->
 		return RocketChat.models.Roles.find({}, { sort: { description: 1, _id: 1 } })
 
+	departments: ->
+		return  LivechatDepartment.find({enabled: true}, {sort: {name: 1}})
+
+	selectUserDepartment: ->
+		if @_id is Template.instance().user.customFields.department[0]
+			return 'selected'
+
+
 	selectUserRole: ->
 		if @_id is 'user'
 			return 'selected'
@@ -37,6 +45,7 @@ Template.userEdit.events
 		t.save(e.currentTarget)
 
 Template.userEdit.onCreated ->
+	this.subscribe('livechat:departments')
 	@user = this.data?.user
 
 	tabBar = Template.currentData().tabBar
@@ -60,6 +69,7 @@ Template.userEdit.onCreated ->
 		userData.joinDefaultChannels = this.$("#joinDefaultChannels:checked").length > 0
 		userData.sendWelcomeEmail = this.$("#sendWelcomeEmail:checked").length > 0
 		userData.roles = [this.$("#role").val()] if this.$("#role").val()
+		userData.departments = [this.$("#department").val()] if this.$("#department").val()
 		return userData
 
 	@validate = =>

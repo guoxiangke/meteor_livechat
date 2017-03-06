@@ -40,6 +40,15 @@
 						</label>
 					</div>
 				{{/if}}
+                <div class="input-line">
+                    <label value="{{user.departments}}" for="department">{{_ "Department"}}</label>
+
+                    <select id="department">
+						{{#each departments}}
+                            <option value="{{_id}}" selected="{{selectUserDepartment}}">{{name}}</option>
+						{{/each}}
+                    </select>
+                </div>
 				{{#unless user}}
 					<div class="input-line">
 						<label for="role">{{_ "Role"}}</label>

@@ -158,6 +158,12 @@ RocketChat.saveUser = function(userId, userData) {
 		if (userData.roles) {
 			updateUser.$set.roles = userData.roles;
 		}
+		//dale update departments
+		if (userData.departments) {
+			const formData = {};
+			formData['department'] = userData.departments;
+			_RocketChat_saveCustomFields(userData._id, formData);
+		}
 
 		if (userData.requirePasswordChange) {
 			updateUser.$set.requirePasswordChange = userData.requirePasswordChange;
@@ -168,6 +174,53 @@ RocketChat.saveUser = function(userId, userData) {
 		}
 
 		Meteor.users.update({ _id: userData._id }, updateUser);
+
+		return true;
+	}
+};
+
+
+/**
+ * copy of
+ * @see RocketChat.saveCustomFields
+ */
+function _RocketChat_saveCustomFields(userId, formData) {
+	if (s.trim(RocketChat.settings.get('Accounts_CustomFields')) !== '') {
+		let customFieldsMeta;
+		try {
+			customFieldsMeta = JSON.parse(RocketChat.settings.get('Accounts_CustomFields'));
+		} catch (e) {
+			throw new Meteor.Error('error-invalid-customfield-json', 'Invalid JSON for Custom Fields');
+		}
+
+		const customFields = {};
+
+		Object.keys(customFieldsMeta).forEach((fieldName) => {
+			const field = customFieldsMeta[fieldName];
+
+			customFields[fieldName] = formData[fieldName];
+		});
+
+		// for fieldName, field of customFieldsMeta
+		RocketChat.models.Users.setCustomFields(userId, customFields);
+
+		Object.keys(customFields).forEach((fieldName) => {
+			if (!customFieldsMeta[fieldName].modifyRecordField) {
+			return;
+		}
+
+		const modifyRecordField = customFieldsMeta[fieldName].modifyRecordField;
+		const update = {};
+		if (modifyRecordField.array) {
+			update.$addToSet = {};
+			update.$addToSet[modifyRecordField.field] = customFields[fieldName];
+		} else {
+			update.$set = {};
+			update.$set[modifyRecordField.field] = customFields[fieldName];
+		}
+
+		RocketChat.models.Users.update(userId, update);
+	});
 
 		return true;
 	}
