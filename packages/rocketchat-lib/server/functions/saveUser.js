@@ -160,9 +160,38 @@ RocketChat.saveUser = function(userId, userData) {
 		}
 		//dale update departments
 		if (userData.departments) {
+			// {
+			// 	"department": {
+			// 	"type": "text",
+			// 		"required": true,
+			// 		"minLength": 8,
+			// 		"modifyRecordField": {
+			// 		"array": true,
+			// 			"field": "departments"
+			// 	}
+			// 	}
+			// }
 			const formData = {};
 			formData['department'] = userData.departments;
 			_RocketChat_saveCustomFields(userData._id, formData);
+			//add this user 2 this departemnt!
+			const department = RocketChat.models.LivechatDepartment.findOneById(userData.departments[0]);
+			var departmentAgents = RocketChat.models.LivechatDepartmentAgents.find({ departmentId: department._id }).fetch()
+			const user = RocketChat.models.Users.findOneById(userData._id);
+			departmentAgents.push({
+				agentId: user._id,
+				username: user.username,
+			});
+			var departmentData={
+				enabled: department.enabled,
+				name: department.name,
+				description: department.description,
+				showOnRegistration: department.showOnRegistration,
+			};
+			RocketChat.Livechat.saveDepartment(department._id, departmentData, departmentAgents);
+			//dale add to role first!
+			updateUser.$set.roles = ['livechat-agent','user'];
+			//dale TODO:: add private channel for each department
 		}
 
 		if (userData.requirePasswordChange) {

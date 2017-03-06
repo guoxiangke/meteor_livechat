@@ -45,6 +45,7 @@ Template.userEdit.events
 		t.save(e.currentTarget)
 
 Template.userEdit.onCreated ->
+	#dale added!
 	this.subscribe('livechat:departments')
 	@user = this.data?.user
 
