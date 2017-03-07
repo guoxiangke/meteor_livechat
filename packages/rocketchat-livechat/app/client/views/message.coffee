@@ -1,6 +1,9 @@
 import moment from 'moment'
 
 Template.message.helpers
+	color: ->
+		return Livechat.color
+
 	own: ->
 		return 'own' if this.u?._id is Meteor.userId()
 

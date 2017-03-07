@@ -1,6 +1,9 @@
 /* globals Livechat, LivechatVideoCall, MsgTyping */
 
 Template.messages.helpers({
+	color() {
+		return Livechat.color;
+	},
 	livechatOnline() {
 		return Livechat.online;
 	},
@@ -151,70 +154,15 @@ Template.messages.events({
 		} else {
 			LivechatVideoCall.request();
 		}
-	}
+	},
+	'scroll .intercom-conversation-body-parts': function(event, instance) {
+		console.log('scroll');
+		instance.updateHeadHeight();
+	},
 });
 
+
 Template.messages.onCreated(function() {
-	const defaultAppLanguage = () => {
-		let lng = window.navigator.userLanguage || window.navigator.language || 'en';
-		const regexp = /([a-z]{2}-)([a-z]{2})/;
-		if (regexp.test(lng)) {
-			lng = lng.replace(regexp, function(match, ...parts) {
-				return parts[0] + parts[1].toUpperCase();
-			});
-		}
-		return lng;
-	};
-	// get all needed live chat info for the user
-	Meteor.call('livechat:getInitialData', visitor.getToken(), (err, result) => {
-		if (err) {
-			console.error(err);
-		} else {
-			if (!result.enabled) {
-				Triggers.setDisabled();
-				return parentCall('removeWidget');
-			}
-			console.log(result);
-			if (!result.online) {
-				Triggers.setDisabled();
-				Livechat.title = result.offlineTitle;
-				Livechat.offlineColor = result.offlineColor;
-				Livechat.offlineMessage = result.offlineMessage;
-				Livechat.displayOfflineForm = result.displayOfflineForm;
-				Livechat.offlineUnavailableMessage = result.offlineUnavailableMessage;
-				Livechat.offlineSuccessMessage = result.offlineSuccessMessage;
-				Livechat.online = false;
-			} else {
-				Livechat.title = result.title;
-				Livechat.onlineColor = result.color;
-				Livechat.online = true;
-				Livechat.transcript = result.transcript;
-				Livechat.transcriptMessage = result.transcriptMessage;
-			}
-			Livechat.videoCall = result.videoCall;
-			Livechat.registrationForm = result.registrationForm;
-
-			if (result.room) {
-				Livechat.room = result.room._id;
-			}
-
-			if (result.agentData) {
-				Livechat.agent = result.agentData;
-			}
-
-			TAPi18n.setLanguage((result.language || defaultAppLanguage()).split('-').shift());
-
-			Triggers.setTriggers(result.triggers);
-			Triggers.init();
-
-			result.departments.forEach((department) => {
-				Department.insert(department);
-			});
-
-			Livechat.ready();
-		}
-	});
-
 	this.atBottom = true;
 
 	this.showOptions = new ReactiveVar(false);
@@ -240,6 +188,43 @@ Template.messages.onCreated(function() {
 			this.showOptions.set(false);
 		}
 	});
+	this.updateHeadHeight = function() {
+		var intercom_body = $('.intercom-conversation-body-parts');
+		if(intercom_body){
+
+				const $intercom_cbp = $('.intercom-conversation-body-parts');
+				var pox = $intercom_cbp.scrollTop();
+				console.log(pox);
+				const $intercom_cp = $('.intercom-conversation-profile');
+				const $intercom_ap = $('.intercom-admin-profile');
+				const $intercom_apc = $('.intercom-admin-profile-compact');
+				const $intercom_apftal = $('.intercom-admin-profile-full-title-and-location');
+				const $intercom_cbs = $('.intercom-conversation-body-snapped');
+				if(pox <= 19){
+					$intercom_cp.addClass('intercom-conversation-profile-expanded');
+					$intercom_ap.removeClass('intercom-team-profile-collapsed');
+					$intercom_apc.attr('style', 'opacity: 0;');
+
+					$intercom_apftal.attr('style', 'opacity: 1;');
+
+
+					$intercom_cbs.attr('style', 'transform: translateY(0px); bottom: -99px;');
+					$intercom_cbp.attr('style', 'top: 174px; bottom: 154px;');
+				}else{
+					$intercom_cp.removeClass('intercom-conversation-profile-expanded');
+					$intercom_ap.addClass('intercom-team-profile-collapsed');
+					$intercom_apc.attr('style', 'opacity: 1;');
+
+					$intercom_apftal.attr('style', 'opacity: 0;');
+
+					$intercom_cbs.attr('style', 'transform: translateY(-100px); bottom: -99px;');
+					$intercom_cbp.attr('style', 'top: 174px; bottom: 55px;');
+
+				}
+
+
+		}
+	};
 });
 
 Template.messages.onRendered(function() {
