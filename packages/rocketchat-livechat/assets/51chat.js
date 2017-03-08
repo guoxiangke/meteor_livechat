@@ -1,4 +1,9 @@
 (function(w) {
+  var url = (window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+  console.log(url,'dale: currentURL');
+
   w.RocketChat = w.liveChat || { _: [] };
   var config = {};
   var widget;
@@ -7,8 +12,8 @@
   var ready = false;
 
   var widgetWidth = '370px';
-  var widgetHeightOpened = '590px';
-  var widgetHeightClosed = '60px';
+  var widgetHeightOpened = '690px';
+  var widgetHeightClosed = '560px';
 
   // hooks
   var callHook = function(action, params) {
@@ -193,3 +198,7 @@
     c.call(w.RocketChat.livechat);
   });
 }(window));
+
+
+
+

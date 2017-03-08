@@ -1,30 +1,51 @@
 <template name="register">
-	<div class="livechat-form">
-		<div class="error error-color error-background">
-			<span>{{{error}}}</span>
-		</div>
-
-		<p class="welcome">
-			{{{welcomeMessage}}}
-		</p>
-		<form id="livechat-registration">
-			<input type="text" name="name" id="guestName" placeholder="{{_ "Name"}}">
-			<input type="email" name="email" id="guestEmail" placeholder="{{_ "Email"}}">
-
-			{{#if showDepartments}}
-				<select name="department">
-					<option value="">{{_ "Select_a_department"}}</option>
-					{{#each departments}}
-						<option value="{{_id}}" selected="{{selectedDepartment}}">{{name}}</option>
-					{{/each}}
-				</select>
-			{{/if}}
-			<button type="submit" id="btnEntrar" class="button"> {{_ "Start_Chat"}} </button>
-
-			{{#if videoCallEnabled}}
-				<br>
-				<button type="submit" class="button request-video"> {{_ "Request_video_chat"}} </button>
-			{{/if}}
-		</form>
-	</div>
+	<div class="intercom-conversation-part intercom-conversation-part-admin intercom-conversation-part-last">
+    <div class="intercom-notification-channels-card">
+        <div class="intercom-notification-channels-card-admin-avatar">
+            <div class="intercom-avatar">{{> avatar username="admin"}}</div>
+        </div>
+        <div class="intercom-notification-channels intercom-notification-channels-last-part">
+            <div class="intercom-notification-channels-options">
+                <p class="welcome">
+					{{{welcomeMessage}}}
+                </p>
+                <div class="intercom-notification-channels-title-container">
+                    <div class="intercom-notification-channels-title">获取回复方式</div>
+                    <div class="intercom-notification-channels-title-success"></div>
+                </div>
+                <div class="intercom-notification-channels-option-container">
+                    <a class="intercom-notification-channels-option" data-type="qq" >QQ</a>
+                    <a class="intercom-notification-channels-option" data-type="wechat">微信</a>
+                    <a class="intercom-notification-channels-option intercom-notification-channels-option-selected" data-type="sms">短信</a>
+                </div>
+                <div class="intercom-notification-channels-input-collector">
+                    <form action="" id="livechat-registration">
+                        <div class="intercom-notification-channels-input-container">
+                            <div class="intercom-notification-channels-input intercom-notification-channels-phone-input">
+                                <div class="intercom-flag cn"></div>
+                                <input type="text" id="input" name="sms" placeholder="135 2005 5900" autocomplete="off">
+                            </div>
+                            <div class="intercom-notification-channels-input-submit-container">
+                                <div class="intercom-notification-channels-input-submit-button">
+                                    <div class="intercom-notification-channels-input-submit-icon"></div>
+                                    <div class="intercom-notification-channels-input-valid-icon"></div>
+                                </div>
+                            </div>
+                        </div>
+						{{#if showDepartments}}
+                            <select name="department">
+                                <option value="">{{_ "Select_a_department"}}</option>
+								{{#each departments}}
+                                    <option value="{{_id}}" selected="{{selectedDepartment}}" data-domain="{{description}}">{{name}}</option>
+								{{/each}}
+                            </select>
+						{{/if}}
+                        <span><div class="intercom-notification-channels-error"><p class="intercom-notification-channels-error-text">{{{error}}}</p></div></span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span></span>
+</div>
 </template>

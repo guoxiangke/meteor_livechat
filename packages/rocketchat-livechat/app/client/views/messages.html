@@ -45,7 +45,7 @@
               <div class="intercom-team-profile">
                 <div class="intercom-team-profile-full" style="opacity: 1;">
                   <div class="intercom-team-profile-full-team-name">51chat微洽客</div>
-                  <div class="intercom-team-profile-full-response-delay">通常20分钟内获得客服回复</div>
+                  <!--<div class="intercom-team-profile-full-response-delay"></div>-->
                   <div class="intercom-team-profile-full-avatar-container">
                     <div class="intercom-team-profile-full-avatar intercom-index-0">
                       <div class="intercom-avatar"><img src="https://static.intercomassets.com/avatars/383251/square_128/Photo_on_4-12-16_at_16.11-1460537250-1462491715.jpg?1462491715"></div>
@@ -60,7 +60,8 @@
                       <div class="intercom-team-profile-full-admin-name">Jade</div>
                     </div>
                   </div>
-                  <div class="intercom-team-profile-full-intro"><span>{{offlineData.offlineMessage}} We make it simple and seamless for businesses and people to talk to each other. Ask us anything<span title="grinning">😀</span></span></div>
+                  <div class="intercom-team-profile-full-intro"><span>{{offlineData.offlineMessage}} make it simple and seamless for businesses and people to talk to each other. Ask us anything<span title="grinning">😀</span></span></div>
+				  <div class="intercom-team-profile-response-delay"><span class="intercom-team-profile-response-delay-text">通常20分钟内就可获得专业客服回复</span></div>
                 </div>
               </div>
             {{/if}}
@@ -69,11 +70,11 @@
           </div>
         </div>
 
-        <div class="intercom-conversation-body-parts" style="top: 158px; bottom: 228px;">
+        <div class="intercom-conversation-body-parts" style="top: 200px; bottom: 228px;">
           <div class="intercom-conversation-body-parts-wrapper">
             <div class="intercom-conversation-parts" id="chat" style="transform: translateY(0px);">
 				{{#if showRegisterForm}}
-				{{> newregister}}
+				{{> register}}
 				{{/if}}
 
 				{{#each messages}}

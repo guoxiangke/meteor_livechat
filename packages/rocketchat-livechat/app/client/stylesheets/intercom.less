@@ -2643,7 +2643,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-notification-channels-card .intercom-notification-channels {
-    margin-top: 6px;
+    margin-top: 80px;
     margin-bottom: 0;
     margin-left: 45px
 }
@@ -2725,7 +2725,7 @@ body>.intercom-container {
 }
 
 #intercom-container .intercom-team-profile-full {
-    padding: 18px 0 30px;
+    padding: 18px 0 0px;
     box-sizing: border-box
 }
 
@@ -2772,7 +2772,30 @@ body>.intercom-container {
     margin: 0 auto;
     line-height: 1.4
 }
-
+#intercom-container .intercom-team-profile-response-delay{
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 20px;
+  line-height: 50px;
+  font-size: 14px;
+  color: #fff;
+}
+#intercom-container .intercom-team-profile-response-delay-text {
+  white-space: nowrap;
+}
+#intercom-container .intercom-team-profile-response-delay:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  content: " ";
+  background: linear-gradient(90deg,transparent 0,hsla(0,0%,100%,.1) 25%,hsla(0,0%,100%,.1) 75%,transparent);
+}
 #intercom-container .intercom-team-profile-full-intro span {
     word-break: break-word
 }

@@ -156,7 +156,6 @@ Template.messages.events({
 		}
 	},
 	'scroll .intercom-conversation-body-parts': function(event, instance) {
-		console.log('scroll');
 		instance.updateHeadHeight();
 	},
 });
@@ -194,7 +193,6 @@ Template.messages.onCreated(function() {
 
 				const $intercom_cbp = $('.intercom-conversation-body-parts');
 				var pox = $intercom_cbp.scrollTop();
-				console.log(pox);
 				const $intercom_cp = $('.intercom-conversation-profile');
 				const $intercom_ap = $('.intercom-admin-profile');
 				const $intercom_apc = $('.intercom-admin-profile-compact');
