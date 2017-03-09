@@ -1,9 +1,4 @@
 (function(w) {
-  var url = (window.location != window.parent.location)
-            ? document.referrer
-            : document.location.href;
-  console.log(url,'dale: currentURL');
-
   w.RocketChat = w.liveChat || { _: [] };
   var config = {};
   var widget;
