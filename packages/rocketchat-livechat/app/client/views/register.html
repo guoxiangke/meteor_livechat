@@ -6,9 +6,6 @@
         </div>
         <div class="intercom-notification-channels intercom-notification-channels-last-part">
             <div class="intercom-notification-channels-options">
-                <p class="welcome">
-					{{{welcomeMessage}}}
-                </p>
                 <div class="intercom-notification-channels-title-container">
                     <div class="intercom-notification-channels-title">获取回复方式</div>
                     <div class="intercom-notification-channels-title-success"></div>
@@ -32,14 +29,6 @@
                                 </div>
                             </div>
                         </div>
-						{{#if showDepartments}}
-                            <select name="department">
-                                <option value="">{{_ "Select_a_department"}}</option>
-								{{#each departments}}
-                                    <option value="{{_id}}" selected="{{selectedDepartment}}" data-domain="{{description}}">{{name}}</option>
-								{{/each}}
-                            </select>
-						{{/if}}
                         <span><div class="intercom-notification-channels-error"><p class="intercom-notification-channels-error-text">{{{error}}}</p></div></span>
                     </form>
                 </div>

@@ -3,15 +3,6 @@ Template.register.helpers({
 	error() {
 		return Template.instance().error.get();
 	},
-	welcomeMessage() {
-		return 'welcomeMessage';
-	},
-	showDepartments() {
-		return Department.find({ showOnRegistration: true }).count() ?true:false;
-	},
-	departments() {
-		return Department.find({ showOnRegistration: true });
-	},
 	videoCallEnabled() {
 		return Livechat.videoCall;
 	},
@@ -42,8 +33,10 @@ Template.register.events({
 		}else{
 			$name = $name.val().trim();
 			$email = $name + '@' + $type;
+			//默认添加到对于的domain department！
+			var domain = FlowRouter.getQueryParam("domain");
+			var departmentId = Department.findOne({ showOnRegistration: true,'description': domain })._id;
 
-			var departmentId = instance.$('select[name=department]').val();
 			if (!departmentId) {
 				var department = Department.findOne({ showOnRegistration: true });
 				if (department) {
@@ -85,7 +78,6 @@ Template.register.events({
 	},
 	'click .intercom-notification-channels-input-submit-button'(e, instance) {
 		e.preventDefault();
-		$('#message').prop('disabled', false);
 		instance.$('#livechat-registration').submit();
 	},
 	'click .intercom-notification-channels-option-container a'(e, instance) {
@@ -119,7 +111,7 @@ Template.register.events({
 });
 
 Template.register.onCreated(function() {
-	$('#message').prop('disabled', true);
+	// this.pageVisited = this.subscribe('livechat:visitorPageVisited', { rid: currentData.rid });
 	this.error = new ReactiveVar();
 	this.request = '';
 	this.showError = (msg) => {

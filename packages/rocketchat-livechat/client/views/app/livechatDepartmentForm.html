@@ -23,6 +23,19 @@
 								<textarea name="description" rows="6">{{department.description}}</textarea>
 							</div>
 						</div>
+                        <div class="input-line">
+                            <label>{{_ "Domain"}}</label>
+                            <div>
+                                <textarea name="description" rows="6">{{department.domain}}</textarea>
+                            </div>
+                        </div>
+                        <div class="input-line">
+                            <label for="color">{{_ "Title_bar_color"}}</label>
+                            <div>
+                                <input type="text" class="preview-settings colorpicker-input" name="color" id="color" value="{{color}}">
+                                <span class="colorpicker-swatch border-component-color" style="background-color: {{color}}"></span>
+                            </div>
+                        </div>
 						<div class="input-line">
 							<label>{{_ "Show_on_registration_page"}}</label>
 							<div>
