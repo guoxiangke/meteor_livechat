@@ -47,6 +47,9 @@ Template.livechatWindow.events({
 		event.stopPropagation();
 		parentCall('openPopout');
 	},
+	'click .intercom-header-buttons-close'(event) {
+		parentCall('triggerClickClose');
+	},
 	'click .sound'(event) {
 		event.stopPropagation();
 		Session.set({sound: !Session.get('sound')});

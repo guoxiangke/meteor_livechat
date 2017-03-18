@@ -173,8 +173,8 @@ Template.messages.onCreated(function() {
 		// Account for no text in the textarea when increasing the height.
 		// If there is no text, reset the height.
 		const inputScrollHeight = $(input).prop('scrollHeight');
-		if (inputScrollHeight > 28) {
-			return $(input).height($(input).val() === '' ? '15px' : (inputScrollHeight >= 200 ? inputScrollHeight - 50 : inputScrollHeight - 20));
+		if (inputScrollHeight > 56) {
+			return $(input).height($(input).val() === '' ? '20px' : (inputScrollHeight >= 216 ? 216 : inputScrollHeight - 36));
 		}
 	};
 
