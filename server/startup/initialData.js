@@ -8,9 +8,9 @@ Meteor.startup(function() {
 	};
 	// https://rocket.chat/docs/administrator-guides/create-the-first-admin
 	process.env.MAIL_URL = 'smtp://' + encodeURIComponent(smtp.username) + ':' + encodeURIComponent(smtp.password) + '@' + encodeURIComponent(smtp.server) + ':' + smtp.port;
-	process.env.ADMIN_USERNAME='admin';
-	process.env.ADMIN_PASS='Profero@2';
-	process.env.ADMIN_EMAIL='admin@51chat.net';
+	// process.env.ADMIN_USERNAME='admin';
+	// process.env.ADMIN_PASS='Profero@2';
+	// process.env.ADMIN_EMAIL='admin@51chat.net';
 	//51chat.net init end
 	Meteor.defer(function() {
 		if (!RocketChat.models.Rooms.findOneById('GENERAL')) {
